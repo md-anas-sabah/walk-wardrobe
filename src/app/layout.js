@@ -16,7 +16,9 @@ export default function RootLayout({ children }) {
       <body className={maven_pro.className}>
         <GlobalState>
           <Navbar />
-          <main>{children}</main>
+          <main className="flex min-h-screen flex-col mt-[75px]">
+            {children}
+          </main>
         </GlobalState>
       </body>
     </html>

@@ -30,17 +30,25 @@ export default function Register() {
                   {registrationFormControl.map((controlItem) =>
                     controlItem.componentType === "input" ? (
                       <InputComponent
+                        key={controlItem.id}
                         type={controlItem.type}
                         placeholder={controlItem.placeholder}
                         label={controlItem.label}
                       />
                     ) : controlItem.componentType === "select" ? (
                       <SelectComponent
+                        key={controlItem.id}
                         label={controlItem.label}
                         options={controlItem.options}
                       />
                     ) : null
                   )}
+                  <button
+                    className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg 
+                   text-white transition-all duration-200 ease-in-out focus:shadow font-medium uppercase tracking-wide rounded-md "
+                  >
+                    Register
+                  </button>
                 </div>
               )}
             </div>

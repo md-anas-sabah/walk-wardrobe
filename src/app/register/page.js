@@ -3,10 +3,22 @@
 import InputComponent from "@/components/Form/Input";
 import SelectComponent from "@/components/Form/Select";
 import { registrationFormControl } from "@/utils";
+import { useState } from "react";
 
 const isRegistered = false;
 
+const initialFormData = {
+  name: "",
+  email: "",
+  password: "",
+  role: "customer",
+};
+
 export default function Register() {
+  const [formData, setFormData] = useState(initialFormData);
+
+  console.log(formData);
+
   return (
     <div className="bg-white relative">
       <div className="flex flex-col items-center justify-between pt-0 pr-10 pb-0 pl-10 mt-8 mr-auto xl:px-5 lg:flex-row">
@@ -34,12 +46,26 @@ export default function Register() {
                         type={controlItem.type}
                         placeholder={controlItem.placeholder}
                         label={controlItem.label}
+                        onChange={(e) => {
+                          setFormData({
+                            ...formData,
+                            [controlItem.id]: e.target.value,
+                          });
+                        }}
+                        value={formData[controlItem.id]}
                       />
                     ) : controlItem.componentType === "select" ? (
                       <SelectComponent
                         key={controlItem.id}
                         label={controlItem.label}
                         options={controlItem.options}
+                        onChange={(e) => {
+                          setFormData({
+                            ...formData,
+                            [controlItem.id]: e.target.value,
+                          });
+                        }}
+                        value={formData[controlItem.id]}
                       />
                     ) : null
                   )}

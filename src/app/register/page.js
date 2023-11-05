@@ -2,6 +2,7 @@
 
 import InputComponent from "@/components/Form/Input";
 import SelectComponent from "@/components/Form/Select";
+import { registerNewUser } from "@/services/register";
 import { registrationFormControl } from "@/utils";
 import { useState } from "react";
 
@@ -17,7 +18,24 @@ const initialFormData = {
 export default function Register() {
   const [formData, setFormData] = useState(initialFormData);
 
-  console.log(formData);
+  // console.log(formData);
+
+  function isFormValid() {
+    return formData &&
+      formData.name &&
+      formData.name.trim() !== "" &&
+      formData.email &&
+      formData.email.trim() !== "" &&
+      formData.password &&
+      formData.password.trim() !== ""
+      ? true
+      : false;
+  }
+
+  async function handleRegisterOnSubmit() {
+    const data = await registerNewUser(formData);
+    console.log(data);
+  }
 
   return (
     <div className="bg-white relative">
@@ -71,7 +89,9 @@ export default function Register() {
                   )}
                   <button
                     className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg 
-                   text-white transition-all duration-200 ease-in-out focus:shadow font-medium uppercase tracking-wide rounded-md "
+                   text-white transition-all duration-200 ease-in-out focus:shadow font-medium uppercase tracking-wide rounded-md disabled:cursor-not-allowed"
+                    disabled={!isFormValid()}
+                    onClick={handleRegisterOnSubmit}
                   >
                     Register
                   </button>

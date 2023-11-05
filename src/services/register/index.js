@@ -12,6 +12,6 @@ export const registerNewUser = async (formData) => {
 
     return finalData;
   } catch (e) {
-    console.log("error", e);
+    console.log("error", e.message);
   }
 };

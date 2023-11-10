@@ -5,18 +5,20 @@ import Joi from "joi";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
 
-export const dynamic = "force-dynamic";
-
 const schema = Joi.object({
   email: Joi.string().email().required(),
-  password: Joi.string().password().required(),
+  password: Joi.string().required(),
 });
+
+export const dynamic = "force-dynamic";
 
 export async function POST(req) {
   await connectToDB();
+
   const { email, password } = await req.json();
 
   const { error } = schema.validate({ email, password });
+
   if (error) {
     return NextResponse.json({
       success: false,
@@ -37,11 +39,10 @@ export async function POST(req) {
     if (!checkPassword) {
       return NextResponse.json({
         success: false,
-        message: "Password you enter is incorrect.",
+        message: "Incorrect password. Please try again !",
       });
     }
 
-    // created token
     const token = jwt.sign(
       {
         id: checkUser._id,
@@ -51,7 +52,7 @@ export async function POST(req) {
       "default_secret_key",
       { expiresIn: "1d" }
     );
-    // After creating token now we have to create data.
+
     const finalData = {
       token,
       user: {
@@ -64,11 +65,11 @@ export async function POST(req) {
 
     return NextResponse.json({
       success: true,
-      message: "Login Successful!!",
+      message: "Login successfull!",
       finalData,
     });
   } catch (e) {
-    console.log("Error while logging in, Please Try again!!");
+    console.log("Error while logging In. Please try again");
 
     return NextResponse.json({
       success: false,

@@ -1,11 +1,56 @@
 "use client";
 
-import InputComponent from "@/components/Form/Input";
 import { loginFormControls } from "@/utils";
 import { useRouter } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
+
+import InputComponent from "@/components/Form/Input";
+import { login } from "@/services/login";
+import { GlobalContext } from "@/context";
+import { Cookie } from "next/font/google";
+import Cookies from "js-cookie";
+
+const initialFormData = {
+  email: "",
+  password: "",
+};
 
 export default function Login() {
+  const [formData, setFormData] = useState(initialFormData);
+
+  const { isAuthUser, setIsAuthUser, user, setUser } =
+    useContext(GlobalContext);
+
   const router = useRouter();
+
+  function isValidForm() {
+    return formData &&
+      formData.email &&
+      formData.email.trim() !== "" &&
+      formData.password &&
+      formData.password.trim() !== ""
+      ? true
+      : false;
+  }
+
+  async function handleLogin() {
+    const res = await login(formData);
+    if (res.success) {
+      setIsAuthUser(true);
+      setUser(res?.finalData?.user);
+      setFormData(initialFormData);
+      Cookies.set("token", res?.finalData?.token);
+      localStorage.setItem("user", JSON.stringify(res?.finalData?.user));
+    } else {
+      setIsAuthUser(false);
+    }
+  }
+
+  console.log(isAuthUser, user);
+
+  useEffect(() => {
+    if (isAuthUser) router.push("/");
+  }, [isAuthUser]);
 
   return (
     <div className="bg-white relative">
@@ -19,16 +64,24 @@ export default function Login() {
                 {loginFormControls.map((controlItem) =>
                   controlItem.componentType === "input" ? (
                     <InputComponent
-                      key={controlItem.id}
                       type={controlItem.type}
                       placeholder={controlItem.placeholder}
                       label={controlItem.label}
+                      value={formData[controlItem.id]}
+                      onChange={(e) => {
+                        setFormData({
+                          ...formData,
+                          [controlItem.id]: e.target.value,
+                        });
+                      }}
                     />
                   ) : null
                 )}
                 <button
                   className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg 
                text-white transition-all duration-200 ease-in-out focus:shadow font-medium uppercase tracking-wide rounded-md "
+                  disabled={!isValidForm()}
+                  onClick={handleLogin}
                 >
                   Login
                 </button>

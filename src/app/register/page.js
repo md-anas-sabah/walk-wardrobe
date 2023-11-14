@@ -2,11 +2,11 @@
 
 import InputComponent from "@/components/Form/Input";
 import SelectComponent from "@/components/Form/Select";
+import { GlobalContext } from "@/context";
 import { registerNewUser } from "@/services/register";
 import { registrationFormControl } from "@/utils";
-import { useState } from "react";
-
-const isRegistered = false;
+import { useRouter } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
 
 const initialFormData = {
   name: "",
@@ -17,8 +17,9 @@ const initialFormData = {
 
 export default function Register() {
   const [formData, setFormData] = useState(initialFormData);
-
-  // console.log(formData);
+  const [isRegistered, setIsRegistered] = useState(false);
+  const { isAuthUser } = useContext(GlobalContext);
+  const router = useRouter();
 
   function isFormValid() {
     return formData &&
@@ -34,8 +35,19 @@ export default function Register() {
 
   async function handleRegisterOnSubmit() {
     const data = await registerNewUser(formData);
+    if (data.success) {
+      setIsRegistered(true);
+      setFormData(initialFormData);
+    } else {
+      setFormData(initialFormData);
+    }
+
     console.log(data);
   }
+
+  useEffect(() => {
+    if (isAuthUser) router.push("/");
+  }, [isAuthUser]);
 
   return (
     <div className="bg-white relative">
@@ -50,7 +62,7 @@ export default function Register() {
               </p>
               {isRegistered ? (
                 <button
-                  className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg 
+                  className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg
                 text-white transition-all duration-200 ease-in-out focus:shadow font-medium uppercase tracking-wide rounded-lg"
                 >
                   Login
@@ -88,7 +100,7 @@ export default function Register() {
                     ) : null
                   )}
                   <button
-                    className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg 
+                    className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg
                    text-white transition-all duration-200 ease-in-out focus:shadow font-medium uppercase tracking-wide rounded-md disabled:cursor-not-allowed"
                     disabled={!isFormValid()}
                     onClick={handleRegisterOnSubmit}

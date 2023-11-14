@@ -2,15 +2,13 @@
 
 import { Fragment, useContext } from "react";
 import { Jost } from "next/font/google";
-import { adminNavOptions, navOptions, styles } from "@/utils";
+import { adminNavOptions, navOptions } from "@/utils";
 import { GlobalContext } from "@/context";
 import CommonModal from "../CommonModal";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const isAdminView = false;
-const isAuthUser = true;
-const user = {
-  role: "admin",
-};
 
 const jost = Jost({
   subsets: ["latin"],
@@ -52,7 +50,20 @@ function NavItems({ isModalView = false }) {
 }
 
 export default function Navbar() {
+  const router = useRouter();
   const { showNavModal, setShowNavModal } = useContext(GlobalContext);
+  const { user, isAuthUser, setIsAuthUser, setUser } =
+    useContext(GlobalContext);
+
+  console.log(user, isAuthUser);
+
+  function handleLogout() {
+    setIsAuthUser(false);
+    setUser(null);
+    Cookies.remove("token");
+    localStorage.clear();
+    router.push("/");
+  }
 
   return (
     <>
@@ -87,11 +98,17 @@ export default function Navbar() {
               )
             ) : null}
             {isAuthUser ? (
-              <button className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium rounded-lg uppercase tracking-wide  text-white hover:bg-gray-700">
+              <button
+                onClick={handleLogout}
+                className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium rounded-lg uppercase tracking-wide  text-white hover:bg-gray-700"
+              >
                 Sign out
               </button>
             ) : (
-              <button className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium rounded-lg uppercase tracking-wide  text-white hover:bg-gray-700">
+              <button
+                onClick={() => router.push("/login")}
+                className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium rounded-lg uppercase tracking-wide  text-white hover:bg-gray-700"
+              >
                 Login
               </button>
             )}

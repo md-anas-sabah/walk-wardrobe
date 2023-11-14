@@ -7,7 +7,6 @@ import { useContext, useEffect, useState } from "react";
 import InputComponent from "@/components/Form/Input";
 import { login } from "@/services/login";
 import { GlobalContext } from "@/context";
-import { Cookie } from "next/font/google";
 import Cookies from "js-cookie";
 
 const initialFormData = {

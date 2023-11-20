@@ -2,11 +2,13 @@
 
 import InputComponent from "@/components/Form/Input";
 import SelectComponent from "@/components/Form/Select";
+import Notification from "@/components/Notification";
 import { GlobalContext } from "@/context";
 import { registerNewUser } from "@/services/register";
 import { registrationFormControl } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const initialFormData = {
   name: "",
@@ -36,9 +38,15 @@ export default function Register() {
   async function handleRegisterOnSubmit() {
     const data = await registerNewUser(formData);
     if (data.success) {
+      toast.success(data.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       setIsRegistered(true);
       setFormData(initialFormData);
     } else {
+      toast.error(data.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       setFormData(initialFormData);
     }
 
@@ -62,7 +70,8 @@ export default function Register() {
               </p>
               {isRegistered ? (
                 <button
-                  className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg
+                  onClick={() => router.push("/login")}
+                  className="inline-flex mt-3 w-full items-center justify-center bg-black px-6 py-4 text-lg
                 text-white transition-all duration-200 ease-in-out focus:shadow font-medium uppercase tracking-wide rounded-lg"
                 >
                   Login
@@ -113,6 +122,7 @@ export default function Register() {
           </div>
         </div>
       </div>
+      <Notification />
     </div>
   );
 }

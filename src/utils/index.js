@@ -187,3 +187,15 @@ export const AvailableSizes = [
     label: "L",
   },
 ];
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyCqcsbA2JbSKa_4XpZu6ySs2Knrph2xLh8",
+  authDomain: "walk-wardrobe.firebaseapp.com",
+  projectId: "walk-wardrobe",
+  storageBucket: "walk-wardrobe.appspot.com",
+  messagingSenderId: "386894541759",
+  appId: "1:386894541759:web:4b95e9106f7381c5c0670a",
+  measurementId: "G-QZ1RVNNF81",
+};
+
+export const firebaseStorageURL = "gs://walk-wardrobe.appspot.com";

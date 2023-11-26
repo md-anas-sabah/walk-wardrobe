@@ -1,11 +1,18 @@
 "use client";
 
 import { useContext, useState } from "react";
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 
 import TileComponent from "@/components/Form/Tile";
 import ComponentLevelLoader from "@/components/Loader/ComponentLevelLoader";
 import { GlobalContext } from "@/context";
-import { AvailableSizes, adminAddProductformControls } from "@/utils";
+import {
+  AvailableSizes,
+  adminAddProductformControls,
+  firebaseConfig,
+  firebaseStorageURL,
+} from "@/utils";
 import InputComponent from "@/components/Form/Input";
 import SelectComponent from "@/components/Form/Select";
 
@@ -21,6 +28,9 @@ const initialFormData = {
   priceDrop: 0,
 };
 
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app, firebaseStorageURL);
+
 export default function AdminAddNewProduct() {
   const [formData, setFormData] = useState(initialFormData);
   const {
@@ -30,7 +40,7 @@ export default function AdminAddNewProduct() {
     setCurrentUpdatedProduct,
   } = useContext(GlobalContext);
   function handleImage() {}
-  function handleAddProduct() {}
+  async function handleAddProduct() {}
 
   return (
     <div className="w-full mt-5 mr-0 mb-0 ml-0 relative">

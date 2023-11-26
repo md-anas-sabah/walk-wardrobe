@@ -2,7 +2,12 @@
 
 import { useContext, useState } from "react";
 import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
 
 import TileComponent from "@/components/Form/Tile";
 import ComponentLevelLoader from "@/components/Loader/ComponentLevelLoader";
@@ -15,6 +20,9 @@ import {
 } from "@/utils";
 import InputComponent from "@/components/Form/Input";
 import SelectComponent from "@/components/Form/Select";
+import { addNewProduct, updateAProduct } from "@/services/product";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const initialFormData = {
   name: "",
@@ -31,16 +39,106 @@ const initialFormData = {
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app, firebaseStorageURL);
 
+const createUniqueFileName = (getFile) => {
+  const timeStamp = Date.now();
+  const randomStringValue = Math.random().toString(36).substring(2, 12);
+
+  return `${getFile.name}-${timeStamp}-${randomStringValue}`;
+};
+
+async function helperForUploadingImageToFirebase(file) {
+  const getFileName = createUniqueFileName(file);
+  const storageReference = ref(storage, `walkwardrobe/${getFileName}`);
+  const uploadImage = uploadBytesResumable(storageReference, file);
+
+  return new Promise((resolve, reject) => {
+    uploadImage.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        console.log(error);
+        reject(error);
+      },
+      () => {
+        getDownloadURL(uploadImage.snapshot.ref)
+          .then((downloadUrl) => resolve(downloadUrl))
+          .catch((error) => reject(error));
+      }
+    );
+  });
+}
+
 export default function AdminAddNewProduct() {
   const [formData, setFormData] = useState(initialFormData);
+  const router = useRouter();
+
   const {
     componentLevelLoader,
     setComponentLevelLoader,
     currentUpdatedProduct,
     setCurrentUpdatedProduct,
   } = useContext(GlobalContext);
-  function handleImage() {}
-  async function handleAddProduct() {}
+
+  async function handleImage(event) {
+    console.log(event.target.files);
+    const extractImageUrl = await helperForUploadingImageToFirebase(
+      event.target.files[0]
+    );
+    console.log(extractImageUrl);
+    if (extractImageUrl !== "") {
+      setFormData({
+        ...formData,
+        imageUrl: extractImageUrl,
+      });
+    }
+  }
+
+  console.log(formData);
+
+  function handleTileClick(getCurrentItem) {
+    let cpySizes = [...formData.sizes];
+    const index = cpySizes.findIndex((item) => item.id === getCurrentItem.id);
+
+    if (index === -1) {
+      cpySizes.push(getCurrentItem);
+    } else {
+      cpySizes = cpySizes.filter((item) => item.id !== getCurrentItem.id);
+    }
+
+    setFormData({
+      ...formData,
+      sizes: cpySizes,
+    });
+  }
+
+  async function handleAddProduct() {
+    setComponentLevelLoader({ loading: true, id: "" });
+    // const res =
+    //   currentUpdatedProduct !== null
+    //     ? await updateAProduct(formData)
+    //     : await addNewProduct(formData);
+    const res = await addNewProduct(formData);
+    console.log(res);
+
+    if (res.success) {
+      setComponentLevelLoader({ loading: false, id: "" });
+      toast.success(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+
+      setFormData(initialFormData);
+      // setCurrentUpdatedProduct(null);
+      setTimeout(() => {
+        router.push("/admin-view/all-products");
+      }, 1000);
+    } else {
+      toast.error(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setComponentLevelLoader({ loading: false, id: "" });
+      setFormData(initialFormData);
+    }
+  }
 
   return (
     <div className="w-full mt-5 mr-0 mb-0 ml-0 relative">
@@ -55,15 +153,16 @@ export default function AdminAddNewProduct() {
           <div className="flex gap-2 flex-col">
             <label>Available sizes</label>
             <TileComponent
-              //   selected={formData.sizes}
-              //   onClick={handleTileClick}
+              selected={formData.sizes}
+              onClick={handleTileClick}
               data={AvailableSizes}
             />
           </div>
 
-          {adminAddProductformControls.map((controlItem) =>
+          {adminAddProductformControls.map((controlItem, idx) =>
             controlItem.componentType === "input" ? (
               <InputComponent
+                key={idx}
                 type={controlItem.type}
                 placeholder={controlItem.placeholder}
                 label={controlItem.label}
@@ -77,6 +176,7 @@ export default function AdminAddNewProduct() {
               />
             ) : controlItem.componentType === "select" ? (
               <SelectComponent
+                key={idx}
                 label={controlItem.label}
                 options={controlItem.options}
                 value={formData[controlItem.id]}

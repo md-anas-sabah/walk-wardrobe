@@ -10,10 +10,10 @@ export default function CommonModal({
   buttonComponent,
   show,
   setShow,
-  showModalTitle,
+  showModalTitle
 }) {
   return (
-    <Transition.Root show={show} as="Fragment">
+    <Transition.Root show={show} as={Fragment}>
       <Dialog as="div" className={"relative z-10"} onClose={setShow}>
         <Transition.Child
           as={Fragment}
@@ -26,7 +26,6 @@ export default function CommonModal({
         >
           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
         </Transition.Child>
-
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
             <div className="fixed inset-y-0 right-0 flex max-w-full pl-10">
@@ -42,15 +41,15 @@ export default function CommonModal({
                 <Dialog.Panel className={"w-screen max-w-md"}>
                   <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                     <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-                      {showModalTitle ? (
-                        <div className="flex items-start justify-between">
-                          <Dialog.Title>{modalTitle}</Dialog.Title>
-                        </div>
-                      ) : null}
+                      {
+                        showModalTitle ?  <div className="flex items-start justify-between">
+                        <Dialog.Title>{modalTitle}</Dialog.Title>
+                      </div> : null
+                      }
                       <div className="mt-20">{mainContent}</div>
                     </div>
                     {showButtons ? (
-                      <div className="border-t border-gray-300 px-4 py-6 sm:px-6">
+                      <div className="border-none px-4 py-6 sm:px-6">
                         {buttonComponent}
                       </div>
                     ) : null}

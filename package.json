@@ -1,5 +1,5 @@
 {
-  "name": "walk-wardrobe",
+  "name": "ecommerce",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,24 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.17",
-    "@stripe/stripe-js": "^2.1.7",
+    "@headlessui/react": "^1.7.15",
+    "@stripe/stripe-js": "^1.54.1",
+    "autoprefixer": "10.4.14",
     "bcryptjs": "^2.4.3",
-    "firebase": "^10.5.0",
-    "joi": "^17.11.0",
+    "firebase": "^10.0.0",
+    "joi": "^17.9.2",
     "js-cookie": "^3.0.5",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^7.6.2",
-    "next": "13.5.5",
-    "react": "^18",
-    "react-dom": "^18",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.3.2",
+    "next": "13.4.9",
+    "postcss": "8.4.25",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-spinners": "^0.13.8",
     "react-toastify": "^9.1.3",
-    "stripe": "^13.10.0"
+    "stripe": "^12.12.0",
+    "tailwindcss": "3.3.2"
   },
   "devDependencies": {
-    "autoprefixer": "^10",
-    "postcss": "^8",
-    "tailwindcss": "^3"
+    "encoding": "^0.1.13"
   }
 }

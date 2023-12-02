@@ -11,7 +11,7 @@ const connectToDB = async () => {
 
   mongoose
     .connect(connectionUrl, configOptions)
-    .then(() => console.log("Walk Wardrobe database connected successfully!"))
+    .then(() => console.log("Ecommerce database connected successfully!"))
     .catch((err) =>
       console.log(`Getting Error from DB connection ${err.message}`)
     );

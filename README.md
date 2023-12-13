@@ -26,3 +26,12 @@
 <li>Deployment: </li>
   - Vercel
 
+<h3>Future Scope</h3>
+<li>File Upload Option:
+Integrate a file upload option in the AI assistant for detailed descriptions, allowing the system to extract steps from uploaded files.</li>
+<li>Multimedia Support:
+Extend support for images and videos for each step, providing a richer and more interactive user experience.</li>
+
+<li>Voice Input:
+Implement a voice input option in the AI assistant, allowing users to speak and convert their speech into a process definition.</li>
+

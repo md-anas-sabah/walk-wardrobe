@@ -10,3 +10,19 @@
 <li><b>Firebase Integration:</b>Integrate Firebase for enhanced functionalities, providing storage for Images.</li>
 <li><b>Strapi API Optimization:</b>Optimize data fetching from Strapi APIs, achieving a 25% reduction in data transfer times and significantly improving overall application responsiveness.</li>
 <li><b>Tailwind CSS Styling:</b>Craft a visually appealing and modern UI with Tailwind CSS, allowing for easy customization and ensuring a consistent design across various screen sizes.</li>
+
+<h3>Technologies Used:</h3>
+<li>Frontend: </li>
+  - React.js<br>
+  - TailwindCSS<br>
+  - Redux<br>
+  - Next.js<br>
+
+<li>Backend: </li>
+  - MongoDB<br>
+  - Firebase<br>
+  - Strapi<br>
+
+<li>Deployment: </li>
+  - Vercel
+

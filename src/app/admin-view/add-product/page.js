@@ -11,7 +11,7 @@ import {
   AvailableSizes,
   adminAddProductformControls,
   firebaseConfig,
-  firebaseStroageURL,
+  firebaseStorageURL,
 } from "@/utils";
 import { initializeApp } from "firebase/app";
 import {
@@ -26,7 +26,7 @@ import { toast } from "react-toastify";
 import { resolve } from "styled-jsx/css";
 
 const app = initializeApp(firebaseConfig);
-const storage = getStorage(app, firebaseStroageURL);
+const storage = getStorage(app, firebaseStorageURL);
 
 const createUniqueFileName = (getFile) => {
   const timeStamp = Date.now();
@@ -132,7 +132,7 @@ export default function AdminAddNewProduct() {
       });
 
       setFormData(initialFormData);
-      setCurrentUpdatedProduct(null)
+      setCurrentUpdatedProduct(null);
       setTimeout(() => {
         router.push("/admin-view/all-products");
       }, 1000);
@@ -200,7 +200,11 @@ export default function AdminAddNewProduct() {
           >
             {componentLevelLoader && componentLevelLoader.loading ? (
               <ComponentLevelLoader
-                text={currentUpdatedProduct !== null ? 'Updating Product' : "Adding Product"}
+                text={
+                  currentUpdatedProduct !== null
+                    ? "Updating Product"
+                    : "Adding Product"
+                }
                 color={"#ffffff"}
                 loading={componentLevelLoader && componentLevelLoader.loading}
               />

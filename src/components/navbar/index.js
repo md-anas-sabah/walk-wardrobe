@@ -5,7 +5,8 @@ import { Jost } from "next/font/google";
 import { adminNavOptions, navOptions } from "@/utils";
 import { Fragment, useContext, useEffect } from "react";
 import CommonModal from "../CommonModal";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
+import { removeCookie } from "@/utils/cookies";
 import { usePathname, useRouter } from "next/navigation";
 import CartModal from "../CartModal";
 
@@ -50,7 +51,7 @@ function NavItems({ isModalView = false, isAdminView, router }) {
   );
 }
 
-export default function Navbar() {
+function Navbar() {
   const { showNavModal, setShowNavModal } = useContext(GlobalContext);
   const {
     user,
@@ -79,7 +80,8 @@ export default function Navbar() {
   function handleLogout() {
     setIsAuthUser(false);
     setUser(null);
-    Cookies.remove("token");
+    // Cookies.remove("token");
+    removeCookie("token");
     localStorage.clear();
     router.push("/");
   }
@@ -202,3 +204,5 @@ export default function Navbar() {
     </>
   );
 }
+
+export default Navbar;

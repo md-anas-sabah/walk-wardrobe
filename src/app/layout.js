@@ -1,7 +1,7 @@
 import GlobalState from "@/context";
 import "./globals.css";
 import { Jost } from "next/font/google";
-import Navbar from "@/components/Navbar";
+import Nav from "@/components/Nav";
 
 const jost = Jost({
   subsets: ["latin"],
@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={jost.className}>
         <GlobalState>
-          <Navbar />
+          <Nav />
           <main className="text-black flex min-h-screen flex-col mt-[80px]">
             {children}
           </main>

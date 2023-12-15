@@ -51,7 +51,7 @@ function NavItems({ isModalView = false, isAdminView, router }) {
   );
 }
 
-function Navbar() {
+function Nav() {
   const { showNavModal, setShowNavModal } = useContext(GlobalContext);
   const {
     user,
@@ -205,4 +205,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Nav;

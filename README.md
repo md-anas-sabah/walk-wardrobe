@@ -3,7 +3,7 @@
 <h3>Project Overview</h3>
 <p>Walk Wardrobe-E-Commerce App, a robust and modern web application built to revolutionize the online shopping experience. Developed using cutting-edge technologies such as Next.js 13, MongoDB, Firebase, Strapi, and Tailwind CSS, this app offers both customers and administrators a seamless and feature-rich platform.</p>
 
-<h3>Key Features</h3>
+<h3>Key Features:</h3>
 <li><b>Next.js SSR and SSG:</b>Leverage the power of Next.js for optimized server-side rendering (SSR) and static site generation (SSG), resulting in a 40% reduction in page load times.</li>
 <li><b>Redux State Management:</bImplement Redux for efficient state management, leading to a 15% increase in user retention through real-time updates in the shopping cart.</li>
 <li><b>MongoDB Database:</b>Utilize MongoDB for a scalable and efficient database, enabling features such as user authentication for seamless sign-in and sign-up experiences.</li>

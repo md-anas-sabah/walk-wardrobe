@@ -20,7 +20,7 @@ export default function CommonListing({ data }) {
           {data && data.length
             ? data.map((item) => (
                 <article
-                  className="relative flex flex-col overflow-hidden border cursor-pointer"
+                  className="relative flex flex-col overflow-hidden border rounded-b-2xl rounded-t-2xl cursor-pointer"
                   key={item._id}
                 >
                   <ProductTile item={item} />
@@ -30,7 +30,7 @@ export default function CommonListing({ data }) {
             : null}
         </div>
       </div>
-      <Notification/>
+      <Notification />
     </section>
   );
 }

@@ -170,7 +170,7 @@ export default function Checkout() {
             <div className="bg-white shadow">
               <div className="px-4 py-6 sm:px-8 sm:py-10 flex flex-col gap-5">
                 <h1 className="font-bold text-lg">
-                  Your payment is successfull and you will be redirected to
+                  Your payment is successful and you will be redirected to
                   orders page in 2 seconds !
                 </h1>
               </div>
@@ -246,7 +246,7 @@ export default function Checkout() {
                   <p>City : {item.city}</p>
                   <p>Country : {item.country}</p>
                   <p>PostalCode : {item.postalCode}</p>
-                  <button className="mt-5 mr-5 inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide">
+                  <button className="mt-5 mr-5 inline-block rounded-full bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide">
                     {item._id === selectedAddress
                       ? "Selected Address"
                       : "Select Address"}
@@ -259,7 +259,7 @@ export default function Checkout() {
           </div>
           <button
             onClick={() => router.push("/account")}
-            className="mt-5 mr-5 inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+            className="mt-5 mr-5 inline-block rounded-full bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
           >
             Add new address
           </button>
@@ -299,7 +299,7 @@ export default function Checkout() {
                   Object.keys(checkoutFormData.shippingAddress).length === 0
                 }
                 onClick={handleCheckout}
-                className="disabled:opacity-50 mt-5 mr-5 w-full  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                className="disabled:opacity-50 mt-5 mr-5 w-full rounded-full inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
               >
                 Checkout
               </button>

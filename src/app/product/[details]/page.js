@@ -4,7 +4,7 @@ import { productById } from "@/services/product";
 export default async function ProductDetails({ params }) {
   const productDetailsData = await productById(params.details);
 
-  console.log(productDetailsData, "sangam");
+  console.log(productDetailsData, "anas");
 
   return <CommonDetails item={productDetailsData && productDetailsData.data} />;
 }

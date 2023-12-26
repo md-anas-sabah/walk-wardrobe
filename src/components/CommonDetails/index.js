@@ -99,7 +99,7 @@ export default function CommonDetails({ item }) {
               <button
                 type="button"
                 onClick={() => handleAddToCart(item)}
-                className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium tracking-wide uppercase text-white"
+                className="mt-1.5 inline-block rounded-full bg-black px-5 py-3 text-xs font-medium tracking-wide uppercase text-white"
               >
                 {componentLevelLoader && componentLevelLoader.loading ? (
                   <ComponentLevelLoader

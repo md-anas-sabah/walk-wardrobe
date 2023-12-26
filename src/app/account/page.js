@@ -31,7 +31,7 @@ export default function Account() {
 
   const [showAddressForm, setShowAddressForm] = useState(false);
   const [currentEditedAddressId, setCurrentEditedAddressId] = useState(null);
-  const router = useRouter()
+  const router = useRouter();
 
   async function extractAllAddresses() {
     setPageLevelLoader(true);
@@ -137,7 +137,10 @@ export default function Account() {
               <p>{user?.email}</p>
               <p>{user?.role}</p>
             </div>
-            <button onClick={()=>router.push('/orders')} className="mt-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide">
+            <button
+              onClick={() => router.push("/orders")}
+              className="mt-5 rounded-full  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+            >
               View Your Orders
             </button>
             <div className="mt-6">
@@ -161,13 +164,13 @@ export default function Account() {
                         <p>PostalCode : {item.postalCode}</p>
                         <button
                           onClick={() => handleUpdateAddress(item)}
-                          className="mt-5 mr-5 inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                          className="mt-5 mr-5 rounded-full  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                         >
                           Update
                         </button>
                         <button
                           onClick={() => handleDelete(item._id)}
-                          className="mt-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                          className="mt-5 rounded-full inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                         >
                           {componentLevelLoader &&
                           componentLevelLoader.loading &&
@@ -195,7 +198,7 @@ export default function Account() {
             <div className="mt-4">
               <button
                 onClick={() => setShowAddressForm(!showAddressForm)}
-                className="mt-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                className="mt-5 rounded-full  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
               >
                 {showAddressForm ? "Hide Address Form" : "Add New Address"}
               </button>

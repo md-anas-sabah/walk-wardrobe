@@ -137,7 +137,7 @@ export default function AdminView() {
                         <button
                           onClick={() => handleUpdateOrderStatus(item)}
                           disabled={!item.isProcessing}
-                          className="disabled:opacity-50 mt-5 mr-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                          className="disabled:opacity-50 rounded-full mt-5 mr-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                         >
                           {componentLevelLoader &&
                           componentLevelLoader.loading &&

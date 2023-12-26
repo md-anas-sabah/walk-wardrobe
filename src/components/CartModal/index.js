@@ -115,7 +115,7 @@ export default function CartModal() {
                   <div className="flex flex-1 items-end justify-between text-sm">
                     <button
                       type="button"
-                      className="font-medium text-yellow-600 sm:order-2"
+                      className="font-medium rounded-full text-yellow-600 sm:order-2"
                       onClick={() => handleDeleteCartItem(cartItem._id)}
                     >
                       {componentLevelLoader &&
@@ -147,7 +147,7 @@ export default function CartModal() {
               router.push("/cart");
               setShowCartModal(false);
             }}
-            className="mt-1.5 w-full inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+            className="mt-1.5 w-full rounded-full  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
           >
             Go To Cart
           </button>
@@ -158,7 +158,7 @@ export default function CartModal() {
               router.push("/checkout");
               setShowCartModal(false);
             }}
-            className="mt-1.5 w-full inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide disabled:opacity-50"
+            className="mt-1.5 rounded-full  w-full inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide disabled:opacity-50"
           >
             Checkout
           </button>

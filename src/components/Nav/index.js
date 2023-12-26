@@ -96,16 +96,16 @@ function Nav() {
             onClick={() => router.push("/")}
             className="flex items-center cursor-pointer"
           >
-            <p className="self-center text-black text-2xl font-semibold whitespace-nowrap">
+            <p className="self-center text-black text-2xl font-semibold whitespace-nowrap ml-10">
               <span className={jost.className}>Walk Wardrobe</span>
             </p>
           </div>
-          <div className="flex md:order-2 gap-2">
+          <div className="flex md:order-2 gap-2 ">
             {!isAdminView && isAuthUser ? (
               <Fragment>
                 <button
                   className={
-                    "mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium upprcase tracking-wide text-white"
+                    "mt-1.5 inline-block  bg-black px-5 py-3 text-xs font-medium uppercase rounded-full tracking-wide text-white"
                   }
                   onClick={() => router.push("/account")}
                 >
@@ -113,7 +113,7 @@ function Nav() {
                 </button>
                 <button
                   className={
-                    "mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium upprcase tracking-wide text-white"
+                    "mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase rounded-full tracking-wide text-white"
                   }
                   onClick={() => setShowCartModal(true)}
                 >
@@ -125,7 +125,7 @@ function Nav() {
               isAdminView ? (
                 <button
                   className={
-                    "mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium upprcase tracking-wide text-white"
+                    "mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase rounded-full tracking-wide text-white"
                   }
                   onClick={() => router.push("/")}
                 >
@@ -135,7 +135,7 @@ function Nav() {
                 <button
                   onClick={() => router.push("/admin-view")}
                   className={
-                    "mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium upprcase tracking-wide text-white"
+                    "mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase  rounded-full tracking-wide text-white"
                   }
                 >
                   Admin View
@@ -146,7 +146,7 @@ function Nav() {
               <button
                 onClick={handleLogout}
                 className={
-                  "rounded-3xl mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium upprcase tracking-wide text-white"
+                  "rounded-3xl mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
                 }
               >
                 Sign out
@@ -155,7 +155,7 @@ function Nav() {
               <button
                 onClick={() => router.push("/login")}
                 className={
-                  "rounded-3xl mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium upprcase tracking-wide text-white"
+                  "rounded-3xl mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
                 }
               >
                 Login

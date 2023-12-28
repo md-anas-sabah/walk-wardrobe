@@ -23,10 +23,16 @@ export const addNewProduct = async (formData) => {
 
 export const getAllAdminProducts = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/admin/all-products", {
+    // const res = await fetch("http://localhost:3000/api/admin/all-products", {
+    //   method: "GET",
+    //   cache: "no-store",
+    // });
+    const res = await fetch("api/admin/all-products", {
       method: "GET",
       cache: "no-store",
     });
+
+    console.log("AnasSabah->", res);
 
     const data = await res.json();
 
@@ -76,12 +82,19 @@ export const deleteAProduct = async (id) => {
 export const productByCategory = async (id) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/admin/product-by-category?id=${id}`,
+      `https://walk-wardrobe.vercel.app/api/admin/product-by-category?id=${id}`,
       {
         method: "GET",
         cache: "no-store",
       }
     );
+    // const res = await fetch(
+    //   `http://localhost:3000/api/admin/product-by-category?id=${id}`,
+    //   {
+    //     method: "GET",
+    //     cache: "no-store",
+    //   }
+    // );
 
     const data = await res.json();
 
@@ -94,12 +107,19 @@ export const productByCategory = async (id) => {
 export const productById = async (id) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/admin/product-by-id?id=${id}`,
+      `https://walk-wardrobe.vercel.app/api/admin/product-by-id?id=${id}`,
       {
         method: "GET",
         cache: "no-store",
       }
     );
+    // const res = await fetch(
+    //   `http://localhost:3000/api/admin/product-by-id?id=${id}`,
+    //   {
+    //     method: "GET",
+    //     cache: "no-store",
+    //   }
+    // );
 
     const data = await res.json();
 

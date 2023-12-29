@@ -138,6 +138,7 @@ export default function Checkout() {
       },
       quantity: 1,
     }));
+    console.log(createLineItems)
 
     const res = await callStripeSession(createLineItems);
     setIsOrderProcessing(true);

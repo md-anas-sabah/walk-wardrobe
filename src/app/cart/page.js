@@ -21,6 +21,7 @@ export default function Cart() {
   async function extractAllCartItems() {
     setPageLevelLoader(true);
     const res = await getAllCartItems(user?._id);
+    console.log("cart res", res);
 
     if (res.success) {
       const updatedData =
@@ -34,7 +35,8 @@ export default function Cart() {
                     ? parseInt(
                         (
                           item.productID.price -
-                          item.productID.price * (item.productID.priceDrop / 100)
+                          item.productID.price *
+                            (item.productID.priceDrop / 100)
                         ).toFixed(2)
                       )
                     : item.productID.price,
@@ -46,7 +48,7 @@ export default function Cart() {
       localStorage.setItem("cartItems", JSON.stringify(updatedData));
     }
 
-    console.log(res);
+   
   }
 
   useEffect(() => {

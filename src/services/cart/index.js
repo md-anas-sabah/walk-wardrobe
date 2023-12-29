@@ -22,7 +22,7 @@ export const addToCart = async (formData) => {
 export const getAllCartItems = async (id) => {
   try {
     const res = await fetch(
-      `https://walk-wardrobe.vercel.app/api/cart/all-cart-items?id=${id}`,
+      `http://localhost:3000/api/cart/all-cart-items?id=${id}`,
       {
         method: "GET",
         headers: {

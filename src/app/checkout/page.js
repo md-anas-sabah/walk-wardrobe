@@ -29,7 +29,7 @@ export default function Checkout() {
   const params = useSearchParams();
 
   const publishableKey =
-    "ppk_test_51OSkwzSFtQACX9TJIITRem2G9EFW6B6OxbIXfTrgDqVJWe4nsWGUcKomVlyXsp8iNq7qHADJ2PG74TEv0rndUUwb00kOuRTcDr";
+    "pk_test_51OSkwzSFtQACX9TJIITRem2G9EFW6B6OxbIXfTrgDqVJWe4nsWGUcKomVlyXsp8iNq7qHADJ2PG74TEv0rndUUwb00kOuRTcDr";
   const stripePromise = loadStripe(publishableKey);
 
   console.log(cartItems);
@@ -138,7 +138,6 @@ export default function Checkout() {
       },
       quantity: 1,
     }));
-    console.log(createLineItems)
 
     const res = await callStripeSession(createLineItems);
     setIsOrderProcessing(true);

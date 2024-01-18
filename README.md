@@ -4,7 +4,7 @@
 <p>Walk Wardrobe-E-Commerce App, a robust and modern web application built to revolutionize the online shopping experience. Developed using cutting-edge technologies such as Next.js 13, MongoDB, Firebase, Strapi, and Tailwind CSS, this app offers both customers and administrators a seamless and feature-rich platform.</p>
 
 <p>
-Administrator Dashboard: Seamless Management
+<h2>Administrator Dashboard: Seamless Management</h2>
 
 As an integral part of the Walk Wardrobe E-Commerce App, the Administrator Dashboard ensures a seamless and feature-rich platform for administrators to efficiently manage products and enhance the overall shopping experience. Leveraging cutting-edge technologies, this dashboard empowers administrators with robust tools for product management, allowing them to add, update, and delete products effortlessly.</p>
 

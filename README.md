@@ -40,3 +40,12 @@ Extend support for images and videos for each step, providing a richer and more 
 <li>Voice Input:
 Implement a voice input option in the AI assistant, allowing users to speak and convert their speech into a process definition.</li>
 
+
+Screenshots:
+
+![Screenshot 2024-02-05 111752](https://github.com/md-anas-sabah/walk-wardrobe/assets/76554722/e934b9af-cc63-439b-9dd7-8a63ec99cddf)
+
+![Screenshot 2024-02-05 111835 - Copy](https://github.com/md-anas-sabah/walk-wardrobe/assets/76554722/2765b41e-86a3-4cf8-be9f-dc115002a723)
+
+![Screenshot 2024-02-05 111910](https://github.com/md-anas-sabah/walk-wardrobe/assets/76554722/574574d8-ed1c-440a-bfb3-697f2d373eee)
+
